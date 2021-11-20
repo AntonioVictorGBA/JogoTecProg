@@ -2,23 +2,15 @@
 #include <SFML/Graphics.hpp>//biblioteca SFML
 
 #include "Jogador1.h"
+#include "Jogo.h"
 
 int main(){
-    sf::RenderWindow window(sf::VideoMode(1280, 720), "Joguinho!");//tamanho e nome da janela
 
-    Jogador1* jogador_1 = new Jogador1();
+    //Jogador1* jogador_1 = new Jogador1();
+    Jogo* jogo = new Jogo();
 
-    while (window.isOpen()) {//enquanto janela está aberta
-        sf::Event event;
-        while (window.pollEvent(event)) {//enquanto ocorrer um evento
-            if (event.type == sf::Event::Closed)//fecha a janela se o evento for de fechar
-                window.close();
-            jogador_1->Jogador1_Move();
-        }
-
-        window.clear(sf::Color::Black);              //cor do fundo e limpa a tela (apaga frames anteriores da animação
-        window.draw(jogador_1->getRectangleShape()); //desenha retângulo (personagem 1) na tela
-        window.display();                            //mostra a tela em uma janela
+    while (jogo->getJanelaIsOpen()) {//enquanto janela está aberta
+        jogo->atualiza();
     }
 
     return 0;
